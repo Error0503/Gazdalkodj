@@ -1,0 +1,27 @@
+﻿@page
+@model Client.Pages.RegisterModel
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Regisztráció</title>
+</head>
+<body>
+    <div class="text-center">
+        <form method="post">
+            <fieldset>
+                <legend>Regisztráció</legend>
+                <div>
+                    <label for="username">Felhasználónév</label>
+                    <input id="username" name="username" type="text" />
+                </div>
+                <div>
+                    <input type="submit" value="Ok" />
+                </div>
+            </fieldset>
+        </form>
+        <p>@Model.Output</p>
+    </div>
+</body>
+</html>
