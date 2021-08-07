@@ -5,7 +5,7 @@ namespace Server.Models
 {
     public class Data : IData
     {
-        private Dictionary<string, int> dict = new Dictionary<string, int>();
+        private readonly Dictionary<string, int> dict = new Dictionary<string, int>();
 
         public int Create(string name)
         {

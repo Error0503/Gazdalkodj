@@ -10,7 +10,15 @@
 </head>
 <body>
     <div class="text-center">
-        <p>@Model.Output</p>
+        @{ 
+            if (Model.Status == 1)
+            {
+                <p>@Model.Output</p>
+            } else
+            {
+                <p style="color:red">@Model.Output</p>
+            }
+        }
     </div>
 </body>
 </html>

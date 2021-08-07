@@ -26,7 +26,16 @@
                 </form>
             }
         }
-        <p>@Model.Output</p>
+
+        @{ 
+            if (Model.ResponseCode == 200)
+            {
+                <p>@Model.Output</p>
+            } else
+            {
+                <p style="color:red">@Model.Output</p>
+            }
+        }
     </div>
 </body>
 </html>

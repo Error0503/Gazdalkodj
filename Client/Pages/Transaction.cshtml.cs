@@ -12,6 +12,7 @@ namespace Client.Pages
     {
 
         public string Output { get; private set; } = "";
+        public int ResponseCode { get; private set; } = 0;
 
         public void OnGet()
         {
@@ -46,11 +47,10 @@ namespace Client.Pages
                     if (operation == '-') url = "http://localhost:5000/substract";
                     Reference refer = new Reference(url, new System.Net.Http.HttpClient());
 
-                    int result = 0;
-                    if (operation == '+') result = refer.AddAsync(username, value).Result;
-                    if (operation == '-') result = refer.SubstractAsync(username, value).Result;
+                    if (operation == '+') ResponseCode = refer.AddAsync(username, value).Result;
+                    if (operation == '-') ResponseCode = refer.SubstractAsync(username, value).Result;
 
-                    if (result == 200)
+                    if (ResponseCode == 200)
                     {
                         Output += "Sikeres tranzakció!";
                     }

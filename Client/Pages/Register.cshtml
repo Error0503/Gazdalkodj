@@ -21,7 +21,18 @@
                 </div>
             </fieldset>
         </form>
-        <p>@Model.Output</p>
+        @{ 
+            if (Model.ResponseCode == 201)
+            {
+                <p style="color:forestgreen">@Model.Output</p>
+            } else if (Model.ResponseCode == 409)
+            {
+                <p>@Model.Output</p>
+            } else
+            {
+                <p style="color:red">@Model.Output</p>
+            }
+        }
     </div>
 </body>
 </html>

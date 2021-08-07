@@ -4,7 +4,7 @@ namespace Client.Pages
 {
     public class DetailsModel : PageModel
     {
-
+        public short Status { get; private set; } = 2;
         public string Output { get; private set; } = "";
 
         public void OnGet()
@@ -13,11 +13,13 @@ namespace Client.Pages
             {
                 string name = TempData.Peek("username").ToString();
                 Reference refer = new Reference("http://localhost:5000/", new System.Net.Http.HttpClient());
-                Output += "<p>" + name + " felhasználó egyenlege: " + refer.DetailsAsync(name).Result + " Ft</p>";
+                Status = 1;
+                Output += name + " felhasználó egyenlege: " + refer.DetailsAsync(name).Result + " Ft";
             }
             else
             {
-                Output += "<p color=\"red\">Még nem regisztráltál!</p>";
+                Status = 0;
+                Output += "Még nem regisztráltál!";
             }
         }
     }

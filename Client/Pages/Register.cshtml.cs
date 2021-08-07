@@ -5,6 +5,7 @@ namespace Client.Pages
 {
     public class RegisterModel : PageModel
     {
+        public int ResponseCode { get; private set; } = 0;
         public string Output { get; private set; } = "";
 
         public void OnPost()
@@ -13,13 +14,13 @@ namespace Client.Pages
             if (!String.IsNullOrEmpty(name) && !String.IsNullOrWhiteSpace(name))
             {
                 Reference refer = new Reference("http://localhost:5000/", new System.Net.Http.HttpClient());
-                int status = refer.RegisterAsync(name).Result;
-                if (status == 201)
+                ResponseCode = refer.RegisterAsync(name).Result;
+                if (ResponseCode == 201)
                 {
                     Output += name + " felhasználó sikeresen létrehozva!";
-                    TempData.Add("username", new String(name));
+                    TempData.Add("username", name);
                 }
-                else if (status == 409)
+                else if (ResponseCode == 409)
                 {
                     Output += "Hiba\n'" + name + "' nevű felhasználó már létezik!";
                 }
@@ -27,7 +28,8 @@ namespace Client.Pages
                 {
                     Output += "Ismeretlen hiba!";
                 }
-            } else
+            }
+            else
             {
                 Output += "Adj meg egy felhasználónevet!";
             }
