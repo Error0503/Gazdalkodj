@@ -24,6 +24,7 @@ namespace Server
             services.AddSwaggerGen();
 
             services.AddSingleton<IData, Data>();
+            services.AddSingleton<IUser, User>(); // TODO: How to add a new User object for every user?
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
