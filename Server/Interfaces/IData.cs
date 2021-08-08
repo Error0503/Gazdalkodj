@@ -12,5 +12,6 @@ namespace Server.Interfaces
         public int Add(string name, int value);
         public int Substract(string name, int value);
         public int Delete(string name);
+        public Dictionary<string, int> GetAll();
     }
 }

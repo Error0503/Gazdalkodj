@@ -37,7 +37,6 @@ namespace Client.Pages
             if (TempData.Peek("username") != null)
             {
                 int value = int.Parse(Request.Form["ammount"]);
-                Console.WriteLine(value);
                 if (value > 0)
                 {
                     string username = TempData.Peek("username").ToString();

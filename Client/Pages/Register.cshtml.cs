@@ -8,7 +8,31 @@ namespace Client.Pages
         public int ResponseCode { get; private set; } = 0;
         public string Output { get; private set; } = "";
 
+        public void OnGet()
+        {
+            if (TempData.Peek("username") != null)
+            {
+                ResponseCode = 5;
+            }
+        }
+
         public void OnPost()
+        {
+            TempData.Add("username", "");
+            CreateUser();
+        }
+
+        public void OnPostConfirm()
+        {
+            CreateUser();
+        }
+
+        public void OnPostCancel()
+        {
+            Response.Redirect("http://localhost:4000/Details");
+        }
+
+        public void CreateUser()
         {
             string name = Request.Form["username"];
             if (!String.IsNullOrEmpty(name) && !String.IsNullOrWhiteSpace(name))
@@ -18,7 +42,7 @@ namespace Client.Pages
                 if (ResponseCode == 201)
                 {
                     Output += name + " felhasználó sikeresen létrehozva!";
-                    TempData.Add("username", name);
+                    TempData["username"] = name;
                 }
                 else if (ResponseCode == 409)
                 {

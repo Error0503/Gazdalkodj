@@ -33,6 +33,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-page="/Transaction">Tranzakció</a>
                                 </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-page="/Register">@TempData.Peek("username")</a>
+                                </li>
                             }
                         }
                     </ul>

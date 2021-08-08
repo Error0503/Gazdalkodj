@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Server.Interfaces;
+using System.Collections.Generic;
+
 namespace Server.Controllers
 {
     [ApiController]
@@ -39,6 +41,13 @@ namespace Server.Controllers
         public int Delete(string name)
         {
             return Data.Delete(name);
+        }
+
+        [HttpGet("admin")]
+        public Dictionary<string, int> GetAll(string pass)
+        {
+            if (pass.Equals("f-original")) return Data.GetAll();
+            return null;
         }
 
         public IData Data { get; }

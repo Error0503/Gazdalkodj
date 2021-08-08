@@ -1,4 +1,5 @@
 ﻿using Server.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace Server.Models
@@ -51,6 +52,11 @@ namespace Server.Models
                 return 200;
             }
             return 404;
+        }
+
+        public Dictionary<string, int> GetAll()
+        {
+            return dict;
         }
     }
 }
