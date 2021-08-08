@@ -10,16 +10,19 @@ namespace Client.Pages
 
         public void OnGet()
         {
-            Console.WriteLine(TempData.Peek("isAdmin"));
             if ((Boolean)TempData.Peek("isAdmin"))
             {
-                Console.WriteLine("true");
                 Reference refer = new Reference("http://localhost:5000/", new System.Net.Http.HttpClient());
-                IDictionary<string, int> result = refer.AdminAsync(Request.Form["pass"]).Result;
+                IDictionary<string, int> result = refer.AdminAsync().Result;
+                if (result.Count != 0)
+                {
                 foreach (KeyValuePair<string, int> item in result)
                 {
-                    Console.WriteLine(item.Key + "\t" + item.Value);
-                    Output += item.Key + "\t" + item.Value;
+                    Output += item.Key + "\t" + item.Value.ToString("C", Globals.nfi) + "\n";
+                }
+                } else
+                {
+                    Output += "Nincs adat";
                 }
             }
         }
@@ -27,10 +30,10 @@ namespace Client.Pages
         public void OnPost()
         {
             string input = Request.Form["pass"];
-            Console.WriteLine(input);
             if (input.Equals("f-original"))
             {
                 TempData["isAdmin"] = true;
+                Response.Redirect("admin");
             }
         }
     }

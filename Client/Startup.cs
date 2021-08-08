@@ -58,6 +58,8 @@ namespace Client
             {
                 endpoints.MapRazorPages();
             });
+
+            Globals.nfi.CurrencyDecimalDigits = 0;
         }
     }
 }

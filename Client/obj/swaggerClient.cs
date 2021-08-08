@@ -202,7 +202,7 @@ namespace Client
         public async System.Threading.Tasks.Task<int> AddAsync(string name, int? value, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/add?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("?");
             if (name != null) 
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("name") + "=").Append(System.Uri.EscapeDataString(ConvertToString(name, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -279,7 +279,7 @@ namespace Client
         public async System.Threading.Tasks.Task<int> SubstractAsync(string name, int? value, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/substract?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("?");
             if (name != null) 
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("name") + "=").Append(System.Uri.EscapeDataString(ConvertToString(name, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -417,23 +417,18 @@ namespace Client
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Collections.Generic.IDictionary<string, int>> AdminAsync(string pass)
+        public System.Threading.Tasks.Task<System.Collections.Generic.IDictionary<string, int>> AdminAsync()
         {
-            return AdminAsync(pass, System.Threading.CancellationToken.None);
+            return AdminAsync(System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<System.Collections.Generic.IDictionary<string, int>> AdminAsync(string pass, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Collections.Generic.IDictionary<string, int>> AdminAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/admin?");
-            if (pass != null) 
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("pass") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pass, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            urlBuilder_.Length--;
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/admin");
     
             var client_ = _httpClient;
             try

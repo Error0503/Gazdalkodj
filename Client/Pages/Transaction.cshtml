@@ -27,15 +27,19 @@
             }
         }
 
-        @{ 
+        @{
             if (Model.ResponseCode == 200)
             {
                 <p>@Model.Output</p>
-            } else
+            }
+            else
             {
                 <p style="color:red">@Model.Output</p>
             }
         }
     </div>
+    <script type="text/javascript">
+        document.getElementById("ammount").focus();
+    </script>
 </body>
 </html>

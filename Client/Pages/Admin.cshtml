@@ -18,7 +18,7 @@
                         <legend>Admin</legend>
                         <div>
                             <label for="pass">Jelszó</label>
-                            <input id="pass" name="passText" type="text" />
+                            <input id="pass" name="pass" type="text" />
                         </div>
                         <div>
                             <input type="submit" value="Ok" />
@@ -27,9 +27,12 @@
                 </form>
             } else
             {
-                <pre>@Model.Output</pre>
+                <pre class="text-center">@Model.Output</pre>
             }
         }
     </div>
+    <script type="text/javascript">
+        document.getElementById("pass").focus();
+    </script>
 </body>
 </html>

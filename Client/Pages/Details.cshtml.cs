@@ -17,11 +17,9 @@ namespace Client.Pages
                 Reference refer = new Reference("http://localhost:5000/", new System.Net.Http.HttpClient());
                 Status = 1;
                 Output += name + " felhasználó egyenlege: ";
-                NumberFormatInfo nfi = new CultureInfo("hu-HU", false).NumberFormat;
-                nfi.CurrencyDecimalDigits = 0;
                 int value = refer.DetailsAsync(name).Result;
                 
-                Balance += value.ToString("C", nfi);
+                Balance += value.ToString("C", Globals.nfi);
             }
             else
             {

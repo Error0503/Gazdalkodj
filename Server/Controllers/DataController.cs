@@ -44,10 +44,9 @@ namespace Server.Controllers
         }
 
         [HttpGet("admin")]
-        public Dictionary<string, int> GetAll(string pass)
+        public Dictionary<string, int> GetAll()
         {
-            if (pass.Equals("f-original")) return Data.GetAll();
-            return null;
+            return Data.GetAll();
         }
 
         public IData Data { get; }

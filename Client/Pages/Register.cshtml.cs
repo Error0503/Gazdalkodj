@@ -7,6 +7,7 @@ namespace Client.Pages
     {
         public int ResponseCode { get; private set; } = 0;
         public string Output { get; private set; } = "";
+        private bool createNew = true;
 
         public void OnGet()
         {
@@ -18,12 +19,13 @@ namespace Client.Pages
 
         public void OnPost()
         {
-            TempData.Add("username", "");
+            createNew = true;
             CreateUser();
         }
 
         public void OnPostConfirm()
         {
+            createNew = false;
             CreateUser();
         }
 
@@ -41,8 +43,15 @@ namespace Client.Pages
                 ResponseCode = refer.RegisterAsync(name).Result;
                 if (ResponseCode == 201)
                 {
+                    if (createNew)
+                    {
+                        TempData.Add("username", name);
+                    }
+                    else
+                    {
+                        TempData["username"] = name;
+                    }
                     Output += name + " felhasználó sikeresen létrehozva!";
-                    TempData["username"] = name;
                 }
                 else if (ResponseCode == 409)
                 {
