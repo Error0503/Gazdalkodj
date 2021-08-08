@@ -1,0 +1,38 @@
+﻿@page
+@model Client.Pages.AdminModel
+@{
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin</title>
+</head>
+<body>
+    <div class="text-center">
+        @{
+            if ((Boolean)(TempData.Peek("isAdmin")) == false)
+            {
+                <form method="post">
+                    <fieldset>
+                        <legend>Admin</legend>
+                        <div>
+                            <label for="pass">Jelszó</label>
+                            <input id="pass" name="pass" type="text" />
+                        </div>
+                        <div>
+                            <input type="submit" value="Ok" />
+                        </div>
+                    </fieldset>
+                </form>
+            } else
+            {
+                <pre class="text-center">@Model.Output</pre>
+            }
+        }
+    </div>
+    <script type="text/javascript">
+        document.getElementById("pass").focus();
+    </script>
+</body>
+</html>

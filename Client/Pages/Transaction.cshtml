@@ -1,0 +1,45 @@
+﻿@page
+@model Client.Pages.TransactionModel
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tranzakció</title>
+</head>
+<body>
+    <div class="text-center">
+        @{ if (TempData.Peek("username") != null)
+            {
+                <form method="post">
+                    <fieldset>
+                        <legend>Tranzakció</legend>
+                        <div>
+                            <label for="ammount">Összeg</label>
+                            <input id="ammount" name="ammount" type="number" />
+                        </div>
+                        <div>
+                            <input type="submit" value="+" asp-page-handler="Plus" />
+                            <input type="submit" value="-" asp-page-handler="Minus" />
+                        </div>
+                    </fieldset>
+                </form>
+            }
+        }
+
+        @{
+            if (Model.ResponseCode == 200)
+            {
+                <p>@Model.Output</p>
+            }
+            else
+            {
+                <p style="color:red">@Model.Output</p>
+            }
+        }
+    </div>
+    <script type="text/javascript">
+        document.getElementById("ammount").focus();
+    </script>
+</body>
+</html>

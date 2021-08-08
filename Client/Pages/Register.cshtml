@@ -1,0 +1,58 @@
+﻿@page
+@model Client.Pages.RegisterModel
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Regisztráció</title>
+</head>
+<body>
+    <div class="text-center">
+        @{
+            if (Model.ResponseCode == 0)
+            {
+                <form method="post">
+                    <fieldset>
+                        <legend>Regisztráció</legend>
+                        <div>
+                            <label for="username">Felhasználónév</label>
+                            <input id="username" name="username" type="text" />
+                        </div>
+                        <div>
+                            <input type="submit" value="Ok" />
+                        </div>
+                    </fieldset>
+                </form>
+            }
+            else if (Model.ResponseCode == 201)
+            {
+                <p style="color:forestgreen">@Model.Output</p>
+            }
+            else if (Model.ResponseCode == 5)
+            {
+                <form method="post">
+                    <fieldset>
+                        <legend>Megerősítés</legend>
+                        <div>
+                            <p>Már regisztráltál @TempData.Peek("username") néven!</p>
+                            <p>Szeretnél másik felhsználót létrehozni?</p>
+                        </div>
+                        <div>
+                            <input type="submit" value="Igen" asp-page-handler="Confirm" />
+                            <input type="submit" value="Nem" asp-page-handler="Cancel" />
+                        </div>
+                    </fieldset>
+                </form>
+            }
+            else
+            {
+                <p style="color:red">@Model.Output</p>
+            }
+        }
+    </div>
+    <script type="text/javascript">
+        document.getElementById("username").focus();
+    </script>
+</body>
+</html>

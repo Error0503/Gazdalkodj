@@ -1,0 +1,25 @@
+﻿@page
+@model Client.Pages.DetailsModel
+@{
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Részletek</title>
+</head>
+<body>
+    <div class="text-center">
+        @{ 
+            if (Model.Status == 1)
+            {
+                <p>@Model.Output</p>
+                <h2>@Model.Balance</h2>
+            } else
+            {
+                <p style="color:red">@Model.Output</p>
+            }
+        }
+    </div>
+</body>
+</html>
